@@ -25,7 +25,7 @@ load_template "#{template_path}/shoulda.rb"
 
 # Handle Errors
 plugin 'exception_notifier', :git => 'git://github.com/rails/exception_notification.git', :submodule => true
-gsub_file 'app/controllers/application_controller.rb', /(class ApplicationController < ActionController::Base)/ do |match|
+gsub_file 'app/controllers/application_controller.rb', /class ApplicationController < ActionController::Base/ do |match|
   "#{match}\n  include ExceptionNotifiable"
 end
 initializer "exceptions.rb", "ExceptionNotifier.exception_recipients = %w(ryan.wood@gmail.com)"
