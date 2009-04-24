@@ -22,6 +22,7 @@ run "mv public/index.html public/index2.html"
 
 load_template "#{template_path}/jquery.rb"
 load_template "#{template_path}/shoulda.rb"
+load_template "#{template_path}/settings.rb"
 
 # Handle Errors
 plugin 'exception_notifier', :git => 'git://github.com/rails/exception_notification.git', :submodule => true
@@ -29,9 +30,6 @@ gsub_file 'app/controllers/application_controller.rb', /class ApplicationControl
   "#{match}\n  include ExceptionNotifiable"
 end
 initializer "exceptions.rb", "ExceptionNotifier.exception_recipients = %w(ryan.wood@gmail.com)"
-
-# Application Config
-gem "settingslogic"
 
 # gem 'mislav-will-paginate'
 # gem 'rubyist-aasm'
