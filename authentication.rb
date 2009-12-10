@@ -32,6 +32,7 @@ CODE
 
 # Login Form
 file "app/views/user_sessions/new.html.haml", <<CODE
+%h1 Login
 - form_for @user_session, :url => user_session_path do |f|
   = f.error_messages
   %p
@@ -91,6 +92,10 @@ generate(:model, "user --skip-migration --skip-fixture") # for tests
 file "app/models/user.rb", <<CODE
 class User < ActiveRecord::Base
   acts_as_authentic
+  
+  def name
+    "#{first_name} #{last_name}"
+  end
 end
 CODE
 
@@ -142,6 +147,10 @@ file "app/views/users/edit.html.haml", <<CODE
 CODE
 
 file "app/views/users/show.html.haml", <<CODE
+%h1 Your Account
+%p
+  %strong Name:
+  =h @user.name
 %p
   %strong Login:
   =h @user.login
